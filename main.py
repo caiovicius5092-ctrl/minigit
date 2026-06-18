@@ -26,4 +26,3 @@ if len(sys.argv) > 1:
             print(hashContent(sys.argv[2]))
 else:
     print("digite um comando")
-
