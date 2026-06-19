@@ -7,7 +7,6 @@ def addFile(caminho_do_arquivo_do_usuario):
     pasta_objects = None
 
     for item in raiz_projeto.iterdir():
-
         # Ignora o Git verdadeiro
         if item.name == ".git":
             continue
@@ -27,13 +26,18 @@ def addFile(caminho_do_arquivo_do_usuario):
 
     arquivo_origem = Path(caminho_do_arquivo_do_usuario).resolve()
 
-    if not arquivo_origem.exists():
-        print("Erro: Arquivo não encontrado.")
-        return
-
+    # Define onde o arquivo deve ficar na pasta objects
     arquivo_destino = pasta_objects / arquivo_origem.name
 
-    shutil.copy2(arquivo_origem, arquivo_destino)
+    # SE O ARQUIVO ORIGEM EXISTIR: Copia ele normalmente
+    if arquivo_origem.exists():
+        shutil.copy2(arquivo_origem, arquivo_destino)
+        print("Arquivo adicionado com sucesso!")
+    
+    # SE NÃO EXISTIR: Cria um arquivo vazio direto no destino
+    else:
+        print(f"Arquivo '{arquivo_origem.name}' não encontrado. Criando arquivo vazio no index...")
+        arquivo_destino.touch()
+        print("Arquivo criado e adicionado com sucesso!")
 
-    print("Arquivo adicionado com sucesso!")
     print(f"Destino: {arquivo_destino}")
