@@ -1,7 +1,8 @@
 import sys
 from mygit.hashing import hashContent
 from mygit.repository import criarRepositorio
-
+from mygit.addFile import addFile
+from mygit.commit import commit
 #init
 if len(sys.argv) > 1:
     comando = sys.argv[1]
@@ -15,14 +16,28 @@ if len(sys.argv) > 1:
         criarRepositorio(nome)
         print(f"{nome} criado com sucesso")
         print(sys.argv)
-    else:
-        print("comando invalido")
-
 #hash
-    if comando == "hash":
+    elif comando == "hash":
         if len(sys.argv) < 3:
             print("digite o caminho do arquivo")
         else:
             print(hashContent(sys.argv[2]))
+#add 
+    elif comando == "add":
+        if len(sys.argv) < 3:
+            print("digite o caminho do arquivo")
+        else:
+            addFile(sys.argv[2])
+#commit
+    elif comando == "commit":
+        if len(sys.argv) < 3:
+            print("Erro: digite a mensagem do commit")
+        else:
+            mensagem = sys.argv[2]
+            commit(mensagem)
+    else:
+        print("comando invalido")
+
+
 else:
     print("digite um comando")
