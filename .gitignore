@@ -1,4 +1,15 @@
-__pycache__/
-*.py[cod]
-*test/
+# Ignora todas as pastas __pycache__ em qualquer nível do projeto
+**/__pycache__/
+
+# Ignora arquivos de bytecode compilados (.pyc, .pyo, .pyd)
 *.pyc
+*.pyo
+*.pyd
+
+# Ignora arquivos de cache do Python e do instalador (opcional, mas recomendado)
+.Python
+*.venv
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
